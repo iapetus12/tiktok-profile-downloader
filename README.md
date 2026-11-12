@@ -1,22 +1,25 @@
-# 📥 TikTok Profile Downloader
+# 📥 TikTok Profile Downloader (CLI & GUI)
 
-Herramienta ligera y automatizada en Python para descargar todos (o los últimos $N$) vídeos de cualquier usuario público de TikTok sin marcas de agua ni restricciones de velocidad.
+Herramienta multiplataforma (Windows, Linux, macOS) en Python para descargar todos (o los últimos $N$) vídeos de cualquier usuario público de TikTok sin marcas de agua.
 
-Incluye suplantación de huella TLS (*browser impersonation* mediante `curl-cffi`) para evitar bloqueos por detección antibot de TikTok.
+Cuenta tanto con **interfaz gráfica moderna (GUI)** con modo oscuro como con versión para **línea de comandos (CLI)**.
+
+Incluye suplantación de huella TLS (*browser impersonation* con `curl-cffi`) para evitar bloqueos por detección antibot de TikTok.
 
 ---
 
 ## 🚀 Características
 
-- **Descarga completa o limitada**: Descarga todos los vídeos públicos de un perfil o solo los últimos $N$ vídeos.
-- **Ruta personalizable**: Elige la carpeta destino en cada ejecución o usa la ruta por defecto (`~/Descargas/TikTok/<usuario>`).
-- **Control de duplicados**: Mediante un historial interno de descargas (`download_archive`), si vuelves a ejecutarlo para el mismo usuario, solo descargará los vídeos nuevos.
-- **Descripciones opcionales**: Posibilidad de guardar los títulos/hashtags de cada vídeo en archivos `.txt`.
-- **Evasión antibot**: Usa pausas inteligentes entre peticiones y cabeceras TLS nativas para evitar rate-limiting o captchas.
+- 🖥️ **Interfaz Gráfica Moderna (GUI)**: Desarrollada con `CustomTkinter` con tema adaptable (oscuro/claro) y registro de actividad en tiempo real.
+- 📁 **Selector de carpetas nativo**: Botón para examinar y elegir la ruta donde guardar los vídeos.
+- 🎬 **Descarga completa o limitada**: Descarga todos los vídeos públicos de un perfil o solo los últimos $N$ vídeos.
+- 🔄 **Control de duplicados**: Historial inteligente (`download_archive`); si vuelves a ejecutarlo para el mismo usuario, solo bajará los vídeos nuevos.
+- 📝 **Descripciones opcionales**: Guarda los textos y hashtags de cada vídeo en archivos `.txt`.
+- ⚡ **Sin bloqueos (Anti-bot Bypass)**: Evasión mediante pausas y huella TLS idéntica a la de un navegador web.
 
 ---
 
-## 📦 Requisitos e Instalación
+## 📦 Instalación
 
 1. Clona el repositorio:
    ```bash
@@ -24,26 +27,49 @@ Incluye suplantación de huella TLS (*browser impersonation* mediante `curl-cffi
    cd tiktok-profile-downloader
    ```
 
-2. Instala las dependencias necesarias:
+2. Instala las dependencias:
    ```bash
    pip install -r requirements.txt
    ```
 
 ---
 
-## 💻 Uso
+## 💻 Modos de Uso
 
-Ejecuta el script:
+### 1. Interfaz Gráfica (Recomendado para Windows / Escritorio)
 
 ```bash
-python3 descarga_tiktok.py
+python gui.py
+```
+*(En Linux/macOS: `python3 gui.py`)*
+
+Se abrirá la ventana gráfica donde podrás ingresar el usuario, elegir la carpeta con el explorador de archivos, limitar la cantidad de vídeos y ver el progreso en tiempo real.
+
+---
+
+### 2. Modo Consola (CLI)
+
+```bash
+python descarga_tiktok.py
 ```
 
-El asistente interactivo te pedirá:
-1. El **usuario de TikTok** (con o sin `@`).
-2. La **carpeta de destino** (puedes presionar `Enter` para usar la carpeta por defecto).
-3. La **cantidad de vídeos** a bajar (deja vacío para descargarlos todos).
-4. Si deseas guardar las **descripciones/textos** de cada publicación.
+---
+
+## 🪟 ¿Cómo generar un `.exe` para Windows?
+
+Si quieres compartir la aplicación o usarla en Windows haciendo **doble clic** (sin necesidad de tener Python instalado):
+
+1. Instala `pyinstaller`:
+   ```bash
+   pip install pyinstaller
+   ```
+
+2. Genera el ejecutable único:
+   ```bash
+   pyinstaller --noconsole --onefile --name="TikTokDownloader" gui.py
+   ```
+
+3. El archivo `TikTokDownloader.exe` estará listo en la carpeta **`dist/`**. ¡Doble clic y listo!
 
 ---
 
