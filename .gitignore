@@ -1,0 +1,17 @@
+# Descargas y archivos multimedia
+descargas/
+*.mp4
+*.m4a
+*.part
+*.ytdl
+.historial_descargas.txt
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.env
+venv/
+env/
+.venv/
